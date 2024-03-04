@@ -8,7 +8,7 @@ clean:
 	go clean -i
 	go clean -testcache
 	go clean -modcache
-gen-go:
+generate:
 	rm -rf ${PROTO_OUTPUT_PATH}/go/*.go
 	protoc --proto_path=${PROTO_PATH} \
 	--go_out=${PROTO_OUTPUT_PATH}/go \
@@ -17,4 +17,4 @@ gen-go:
 	--go-grpc_opt=paths=source_relative \
 	${PROTO_PATH}/*.proto
 
-.PHONY: install clean gen-go
+.PHONY: install clean generate
