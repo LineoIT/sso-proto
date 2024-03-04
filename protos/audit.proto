@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package proto;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/LineoIT/connectx-proto";
+
+
+
+message AuditLog {
+    string account_id = 1;
+    string event_type = 2;
+    google.protobuf.Timestamp event_timestamp = 3;
+    string user_agent = 4;
+    string user_ip = 5;
+    string description = 6;
+
+    string table_name = 7;
+    string row_id = 8;
+}
+
+
+message AuditLogFilter {
+    string account_id = 1;
+    string event_type = 2;
+    google.protobuf.Timestamp event_timestamp = 3;
+    string user_agent = 4;
+    string user_ip = 5;
+    string description = 6;
+
+    string table_name = 7;
+    string row_id = 8;
+    int64 limit = 9;
+    int64 ofset = 10;
+}
+
+message AuditLogResponse {
+  int64 page = 1;
+  int64 page_count = 2;
+  int64 total = 3;
+  repeated AuditLog data = 4;
+}

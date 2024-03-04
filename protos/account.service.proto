@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package proto;
+
+import "common.proto";
+import "account.proto";
+
+option go_package = "github.com/LineoIT/connectx-proto";
+
+service AccountService {
+  rpc CreateAccount (CreateAccountRequest) returns (ID) {}
+  rpc UpdateFullname (UpdateFullnameRequest) returns (Empty) {}
+  rpc EnableAccount (EnableAccountRequest) returns (Empty) {}
+  rpc ListAccounts (AccountFilter) returns ( AccountResponse) {}
+  rpc GetAccount (AccountFilter) returns (Account) {}
+  rpc Signin (LoginRequest) returns (AccessToken) {}
+  rpc ForgotPassword (ForgotPasswordRequest) returns (Empty) {}
+  rpc ResetPassword (ResetPasswordRequest) returns (Empty) {}
+}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "github.com/LineoIT/connectx-proto";
+
+message Empty {}
+
+message ID {
+  string id = 1;
+}
