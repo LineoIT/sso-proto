@@ -15,5 +15,6 @@ service AccountService {
   rpc GetAccount (AccountFilter) returns (Account) {}
   rpc Signin (LoginRequest) returns (AccessToken) {}
   rpc ForgotPassword (ForgotPasswordRequest) returns (Empty) {}
+  rpc EnableResetPassword (EnableResetPasswordRequest) returns (AccessToken) {}
   rpc ResetPassword (ResetPasswordRequest) returns (Empty) {}
 }
