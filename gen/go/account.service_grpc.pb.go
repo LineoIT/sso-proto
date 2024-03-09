@@ -4,7 +4,7 @@
 // - protoc             v4.25.1
 // source: account.service.proto
 
-package connectx_proto
+package sso_proto
 
 import (
 	context "context"

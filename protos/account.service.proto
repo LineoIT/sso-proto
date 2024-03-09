@@ -5,7 +5,7 @@ package proto;
 import "common.proto";
 import "account.proto";
 
-option go_package = "github.com/LineoIT/connectx-proto";
+option go_package = "github.com/LineoIT/sso-proto";
 
 service AccountService {
   rpc CreateAccount (CreateAccountRequest) returns (ID) {}

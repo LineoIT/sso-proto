@@ -1,3 +1,3 @@
-module github.com/LineoIT/connectx-proto
+module github.com/LineoIT/sso-proto
 
 go 1.21.0

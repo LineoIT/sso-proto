@@ -6,7 +6,7 @@ package proto;
 import "common.proto";
 import "audit.proto";
 
-option go_package = "github.com/LineoIT/connectx-proto";
+option go_package = "github.com/LineoIT/sso-proto";
 
 
 
