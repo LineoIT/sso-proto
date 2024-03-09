@@ -25,7 +25,7 @@ var file_account_service_proto_rawDesc = []byte{
 	0x0a, 0x15, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63,
 	0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x05, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x0c,
 	0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x0d, 0x61, 0x63,
-	0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0xf2, 0x03, 0x0a, 0x0e,
+	0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0xc2, 0x04, 0x0a, 0x0e,
 	0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x39,
 	0x0a, 0x0d, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x12,
 	0x1b, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x63,
@@ -53,6 +53,11 @@ var file_account_service_proto_rawDesc = []byte{
 	0x77, 0x6f, 0x72, 0x64, 0x12, 0x1c, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x46, 0x6f, 0x72,
 	0x67, 0x6f, 0x74, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65,
 	0x73, 0x74, 0x1a, 0x0c, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79,
+	0x22, 0x00, 0x12, 0x4e, 0x0a, 0x13, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x65,
+	0x74, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x12, 0x21, 0x2e, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x2e, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x65, 0x74, 0x50, 0x61, 0x73,
+	0x73, 0x77, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x12, 0x2e, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x54, 0x6f, 0x6b, 0x65, 0x6e,
 	0x22, 0x00, 0x12, 0x3c, 0x0a, 0x0d, 0x52, 0x65, 0x73, 0x65, 0x74, 0x50, 0x61, 0x73, 0x73, 0x77,
 	0x6f, 0x72, 0x64, 0x12, 0x1b, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x52, 0x65, 0x73, 0x65,
 	0x74, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
@@ -63,18 +68,19 @@ var file_account_service_proto_rawDesc = []byte{
 }
 
 var file_account_service_proto_goTypes = []interface{}{
-	(*CreateAccountRequest)(nil),  // 0: proto.CreateAccountRequest
-	(*UpdateFullnameRequest)(nil), // 1: proto.UpdateFullnameRequest
-	(*EnableAccountRequest)(nil),  // 2: proto.EnableAccountRequest
-	(*AccountFilter)(nil),         // 3: proto.AccountFilter
-	(*LoginRequest)(nil),          // 4: proto.LoginRequest
-	(*ForgotPasswordRequest)(nil), // 5: proto.ForgotPasswordRequest
-	(*ResetPasswordRequest)(nil),  // 6: proto.ResetPasswordRequest
-	(*ID)(nil),                    // 7: proto.ID
-	(*Empty)(nil),                 // 8: proto.Empty
-	(*AccountResponse)(nil),       // 9: proto.AccountResponse
-	(*Account)(nil),               // 10: proto.Account
-	(*AccessToken)(nil),           // 11: proto.AccessToken
+	(*CreateAccountRequest)(nil),       // 0: proto.CreateAccountRequest
+	(*UpdateFullnameRequest)(nil),      // 1: proto.UpdateFullnameRequest
+	(*EnableAccountRequest)(nil),       // 2: proto.EnableAccountRequest
+	(*AccountFilter)(nil),              // 3: proto.AccountFilter
+	(*LoginRequest)(nil),               // 4: proto.LoginRequest
+	(*ForgotPasswordRequest)(nil),      // 5: proto.ForgotPasswordRequest
+	(*EnableResetPasswordRequest)(nil), // 6: proto.EnableResetPasswordRequest
+	(*ResetPasswordRequest)(nil),       // 7: proto.ResetPasswordRequest
+	(*ID)(nil),                         // 8: proto.ID
+	(*Empty)(nil),                      // 9: proto.Empty
+	(*AccountResponse)(nil),            // 10: proto.AccountResponse
+	(*Account)(nil),                    // 11: proto.Account
+	(*AccessToken)(nil),                // 12: proto.AccessToken
 }
 var file_account_service_proto_depIdxs = []int32{
 	0,  // 0: proto.AccountService.CreateAccount:input_type -> proto.CreateAccountRequest
@@ -84,17 +90,19 @@ var file_account_service_proto_depIdxs = []int32{
 	3,  // 4: proto.AccountService.GetAccount:input_type -> proto.AccountFilter
 	4,  // 5: proto.AccountService.Signin:input_type -> proto.LoginRequest
 	5,  // 6: proto.AccountService.ForgotPassword:input_type -> proto.ForgotPasswordRequest
-	6,  // 7: proto.AccountService.ResetPassword:input_type -> proto.ResetPasswordRequest
-	7,  // 8: proto.AccountService.CreateAccount:output_type -> proto.ID
-	8,  // 9: proto.AccountService.UpdateFullname:output_type -> proto.Empty
-	8,  // 10: proto.AccountService.EnableAccount:output_type -> proto.Empty
-	9,  // 11: proto.AccountService.ListAccounts:output_type -> proto.AccountResponse
-	10, // 12: proto.AccountService.GetAccount:output_type -> proto.Account
-	11, // 13: proto.AccountService.Signin:output_type -> proto.AccessToken
-	8,  // 14: proto.AccountService.ForgotPassword:output_type -> proto.Empty
-	8,  // 15: proto.AccountService.ResetPassword:output_type -> proto.Empty
-	8,  // [8:16] is the sub-list for method output_type
-	0,  // [0:8] is the sub-list for method input_type
+	6,  // 7: proto.AccountService.EnableResetPassword:input_type -> proto.EnableResetPasswordRequest
+	7,  // 8: proto.AccountService.ResetPassword:input_type -> proto.ResetPasswordRequest
+	8,  // 9: proto.AccountService.CreateAccount:output_type -> proto.ID
+	9,  // 10: proto.AccountService.UpdateFullname:output_type -> proto.Empty
+	9,  // 11: proto.AccountService.EnableAccount:output_type -> proto.Empty
+	10, // 12: proto.AccountService.ListAccounts:output_type -> proto.AccountResponse
+	11, // 13: proto.AccountService.GetAccount:output_type -> proto.Account
+	12, // 14: proto.AccountService.Signin:output_type -> proto.AccessToken
+	9,  // 15: proto.AccountService.ForgotPassword:output_type -> proto.Empty
+	12, // 16: proto.AccountService.EnableResetPassword:output_type -> proto.AccessToken
+	9,  // 17: proto.AccountService.ResetPassword:output_type -> proto.Empty
+	9,  // [9:18] is the sub-list for method output_type
+	0,  // [0:9] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name

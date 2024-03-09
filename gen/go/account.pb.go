@@ -738,20 +738,73 @@ func (x *ForgotPasswordRequest) GetEmail() string {
 	return ""
 }
 
+type EnableResetPasswordRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Email string `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
+	Code  string `protobuf:"bytes,2,opt,name=code,proto3" json:"code,omitempty"`
+}
+
+func (x *EnableResetPasswordRequest) Reset() {
+	*x = EnableResetPasswordRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_account_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *EnableResetPasswordRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EnableResetPasswordRequest) ProtoMessage() {}
+
+func (x *EnableResetPasswordRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_account_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EnableResetPasswordRequest.ProtoReflect.Descriptor instead.
+func (*EnableResetPasswordRequest) Descriptor() ([]byte, []int) {
+	return file_account_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *EnableResetPasswordRequest) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
+func (x *EnableResetPasswordRequest) GetCode() string {
+	if x != nil {
+		return x.Code
+	}
+	return ""
+}
+
 type ResetPasswordRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Email       string `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
-	Password    string `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
-	ConfirmCode string `protobuf:"bytes,3,opt,name=confirm_code,json=confirmCode,proto3" json:"confirm_code,omitempty"`
+	Password string `protobuf:"bytes,1,opt,name=password,proto3" json:"password,omitempty"`
 }
 
 func (x *ResetPasswordRequest) Reset() {
 	*x = ResetPasswordRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_account_proto_msgTypes[9]
+		mi := &file_account_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -764,7 +817,7 @@ func (x *ResetPasswordRequest) String() string {
 func (*ResetPasswordRequest) ProtoMessage() {}
 
 func (x *ResetPasswordRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_account_proto_msgTypes[9]
+	mi := &file_account_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -777,26 +830,12 @@ func (x *ResetPasswordRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResetPasswordRequest.ProtoReflect.Descriptor instead.
 func (*ResetPasswordRequest) Descriptor() ([]byte, []int) {
-	return file_account_proto_rawDescGZIP(), []int{9}
-}
-
-func (x *ResetPasswordRequest) GetEmail() string {
-	if x != nil {
-		return x.Email
-	}
-	return ""
+	return file_account_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *ResetPasswordRequest) GetPassword() string {
 	if x != nil {
 		return x.Password
-	}
-	return ""
-}
-
-func (x *ResetPasswordRequest) GetConfirmCode() string {
-	if x != nil {
-		return x.ConfirmCode
 	}
 	return ""
 }
@@ -898,20 +937,21 @@ var file_account_proto_rawDesc = []byte{
 	0x65, 0x78, 0x70, 0x18, 0x03, 0x20, 0x01, 0x28, 0x03, 0x52, 0x03, 0x65, 0x78, 0x70, 0x22, 0x2d,
 	0x0a, 0x15, 0x46, 0x6f, 0x72, 0x67, 0x6f, 0x74, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64,
 	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x22, 0x6b, 0x0a,
-	0x14, 0x52, 0x65, 0x73, 0x65, 0x74, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x12, 0x1a, 0x0a, 0x08, 0x70,
-	0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x70,
-	0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x12, 0x21, 0x0a, 0x0c, 0x63, 0x6f, 0x6e, 0x66, 0x69,
-	0x72, 0x6d, 0x5f, 0x63, 0x6f, 0x64, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x63,
-	0x6f, 0x6e, 0x66, 0x69, 0x72, 0x6d, 0x43, 0x6f, 0x64, 0x65, 0x2a, 0x2b, 0x0a, 0x0d, 0x41, 0x63,
-	0x63, 0x6f, 0x75, 0x6e, 0x74, 0x54, 0x61, 0x72, 0x67, 0x65, 0x74, 0x12, 0x09, 0x0a, 0x05, 0x45,
-	0x4d, 0x41, 0x49, 0x4c, 0x10, 0x00, 0x12, 0x0f, 0x0a, 0x0b, 0x50, 0x48, 0x4f, 0x4e, 0x45, 0x4e,
-	0x55, 0x4d, 0x42, 0x45, 0x52, 0x10, 0x01, 0x42, 0x23, 0x5a, 0x21, 0x67, 0x69, 0x74, 0x68, 0x75,
-	0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x4c, 0x69, 0x6e, 0x65, 0x6f, 0x49, 0x54, 0x2f, 0x63, 0x6f,
-	0x6e, 0x6e, 0x65, 0x63, 0x74, 0x78, 0x2d, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x06, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x33,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x22, 0x46, 0x0a,
+	0x1a, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x65, 0x74, 0x50, 0x61, 0x73, 0x73,
+	0x77, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x65,
+	0x6d, 0x61, 0x69, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x65, 0x6d, 0x61, 0x69,
+	0x6c, 0x12, 0x12, 0x0a, 0x04, 0x63, 0x6f, 0x64, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x04, 0x63, 0x6f, 0x64, 0x65, 0x22, 0x32, 0x0a, 0x14, 0x52, 0x65, 0x73, 0x65, 0x74, 0x50, 0x61,
+	0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a,
+	0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x2a, 0x2b, 0x0a, 0x0d, 0x41, 0x63, 0x63,
+	0x6f, 0x75, 0x6e, 0x74, 0x54, 0x61, 0x72, 0x67, 0x65, 0x74, 0x12, 0x09, 0x0a, 0x05, 0x45, 0x4d,
+	0x41, 0x49, 0x4c, 0x10, 0x00, 0x12, 0x0f, 0x0a, 0x0b, 0x50, 0x48, 0x4f, 0x4e, 0x45, 0x4e, 0x55,
+	0x4d, 0x42, 0x45, 0x52, 0x10, 0x01, 0x42, 0x23, 0x5a, 0x21, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62,
+	0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x4c, 0x69, 0x6e, 0x65, 0x6f, 0x49, 0x54, 0x2f, 0x63, 0x6f, 0x6e,
+	0x6e, 0x65, 0x63, 0x74, 0x78, 0x2d, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x06, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x33,
 }
 
 var (
@@ -927,27 +967,28 @@ func file_account_proto_rawDescGZIP() []byte {
 }
 
 var file_account_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_account_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_account_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_account_proto_goTypes = []interface{}{
-	(AccountTarget)(0),            // 0: proto.AccountTarget
-	(*Account)(nil),               // 1: proto.Account
-	(*CreateAccountRequest)(nil),  // 2: proto.CreateAccountRequest
-	(*AccountFilter)(nil),         // 3: proto.AccountFilter
-	(*UpdateFullnameRequest)(nil), // 4: proto.UpdateFullnameRequest
-	(*AccountResponse)(nil),       // 5: proto.AccountResponse
-	(*EnableAccountRequest)(nil),  // 6: proto.EnableAccountRequest
-	(*LoginRequest)(nil),          // 7: proto.LoginRequest
-	(*AccessToken)(nil),           // 8: proto.AccessToken
-	(*ForgotPasswordRequest)(nil), // 9: proto.ForgotPasswordRequest
-	(*ResetPasswordRequest)(nil),  // 10: proto.ResetPasswordRequest
-	(*timestamppb.Timestamp)(nil), // 11: google.protobuf.Timestamp
+	(AccountTarget)(0),                 // 0: proto.AccountTarget
+	(*Account)(nil),                    // 1: proto.Account
+	(*CreateAccountRequest)(nil),       // 2: proto.CreateAccountRequest
+	(*AccountFilter)(nil),              // 3: proto.AccountFilter
+	(*UpdateFullnameRequest)(nil),      // 4: proto.UpdateFullnameRequest
+	(*AccountResponse)(nil),            // 5: proto.AccountResponse
+	(*EnableAccountRequest)(nil),       // 6: proto.EnableAccountRequest
+	(*LoginRequest)(nil),               // 7: proto.LoginRequest
+	(*AccessToken)(nil),                // 8: proto.AccessToken
+	(*ForgotPasswordRequest)(nil),      // 9: proto.ForgotPasswordRequest
+	(*EnableResetPasswordRequest)(nil), // 10: proto.EnableResetPasswordRequest
+	(*ResetPasswordRequest)(nil),       // 11: proto.ResetPasswordRequest
+	(*timestamppb.Timestamp)(nil),      // 12: google.protobuf.Timestamp
 }
 var file_account_proto_depIdxs = []int32{
-	11, // 0: proto.Account.confirm_email_at:type_name -> google.protobuf.Timestamp
-	11, // 1: proto.Account.confirm_phonenumber_at:type_name -> google.protobuf.Timestamp
-	11, // 2: proto.Account.created_at:type_name -> google.protobuf.Timestamp
-	11, // 3: proto.Account.updated_at:type_name -> google.protobuf.Timestamp
-	11, // 4: proto.Account.deleted_at:type_name -> google.protobuf.Timestamp
+	12, // 0: proto.Account.confirm_email_at:type_name -> google.protobuf.Timestamp
+	12, // 1: proto.Account.confirm_phonenumber_at:type_name -> google.protobuf.Timestamp
+	12, // 2: proto.Account.created_at:type_name -> google.protobuf.Timestamp
+	12, // 3: proto.Account.updated_at:type_name -> google.protobuf.Timestamp
+	12, // 4: proto.Account.deleted_at:type_name -> google.protobuf.Timestamp
 	1,  // 5: proto.AccountResponse.data:type_name -> proto.Account
 	0,  // 6: proto.EnableAccountRequest.target:type_name -> proto.AccountTarget
 	0,  // 7: proto.LoginRequest.target:type_name -> proto.AccountTarget
@@ -1073,6 +1114,18 @@ func file_account_proto_init() {
 			}
 		}
 		file_account_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*EnableResetPasswordRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_account_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ResetPasswordRequest); i {
 			case 0:
 				return &v.state
@@ -1091,7 +1144,7 @@ func file_account_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_account_proto_rawDesc,
 			NumEnums:      1,
-			NumMessages:   10,
+			NumMessages:   11,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

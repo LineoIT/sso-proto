@@ -29,6 +29,7 @@ type AccountServiceClient interface {
 	GetAccount(ctx context.Context, in *AccountFilter, opts ...grpc.CallOption) (*Account, error)
 	Signin(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*AccessToken, error)
 	ForgotPassword(ctx context.Context, in *ForgotPasswordRequest, opts ...grpc.CallOption) (*Empty, error)
+	EnableResetPassword(ctx context.Context, in *EnableResetPasswordRequest, opts ...grpc.CallOption) (*AccessToken, error)
 	ResetPassword(ctx context.Context, in *ResetPasswordRequest, opts ...grpc.CallOption) (*Empty, error)
 }
 
@@ -103,6 +104,15 @@ func (c *accountServiceClient) ForgotPassword(ctx context.Context, in *ForgotPas
 	return out, nil
 }
 
+func (c *accountServiceClient) EnableResetPassword(ctx context.Context, in *EnableResetPasswordRequest, opts ...grpc.CallOption) (*AccessToken, error) {
+	out := new(AccessToken)
+	err := c.cc.Invoke(ctx, "/proto.AccountService/EnableResetPassword", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *accountServiceClient) ResetPassword(ctx context.Context, in *ResetPasswordRequest, opts ...grpc.CallOption) (*Empty, error) {
 	out := new(Empty)
 	err := c.cc.Invoke(ctx, "/proto.AccountService/ResetPassword", in, out, opts...)
@@ -123,6 +133,7 @@ type AccountServiceServer interface {
 	GetAccount(context.Context, *AccountFilter) (*Account, error)
 	Signin(context.Context, *LoginRequest) (*AccessToken, error)
 	ForgotPassword(context.Context, *ForgotPasswordRequest) (*Empty, error)
+	EnableResetPassword(context.Context, *EnableResetPasswordRequest) (*AccessToken, error)
 	ResetPassword(context.Context, *ResetPasswordRequest) (*Empty, error)
 	mustEmbedUnimplementedAccountServiceServer()
 }
@@ -151,6 +162,9 @@ func (UnimplementedAccountServiceServer) Signin(context.Context, *LoginRequest) 
 }
 func (UnimplementedAccountServiceServer) ForgotPassword(context.Context, *ForgotPasswordRequest) (*Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ForgotPassword not implemented")
+}
+func (UnimplementedAccountServiceServer) EnableResetPassword(context.Context, *EnableResetPasswordRequest) (*AccessToken, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EnableResetPassword not implemented")
 }
 func (UnimplementedAccountServiceServer) ResetPassword(context.Context, *ResetPasswordRequest) (*Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ResetPassword not implemented")
@@ -294,6 +308,24 @@ func _AccountService_ForgotPassword_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AccountService_EnableResetPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EnableResetPasswordRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountServiceServer).EnableResetPassword(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/proto.AccountService/EnableResetPassword",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountServiceServer).EnableResetPassword(ctx, req.(*EnableResetPasswordRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AccountService_ResetPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ResetPasswordRequest)
 	if err := dec(in); err != nil {
@@ -346,6 +378,10 @@ var AccountService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ForgotPassword",
 			Handler:    _AccountService_ForgotPassword_Handler,
+		},
+		{
+			MethodName: "EnableResetPassword",
+			Handler:    _AccountService_EnableResetPassword_Handler,
 		},
 		{
 			MethodName: "ResetPassword",
