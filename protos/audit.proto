@@ -3,10 +3,18 @@ syntax = "proto3";
 package proto;
 
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
 
-option go_package = "github.com/LineoIT/sso-proto";
+option go_package = "v1/";
+// option go_package = "github.com/LineoIT/sso-proto";
 
 
+service AuditService {
+  rpc CreateAuditLog (AuditLog) returns (CreateAuditLogResponse) {}
+  rpc UpdateAuditLog (AuditLog) returns (google.protobuf.Empty) {}
+  rpc ListAuditLog (AuditLogFilter) returns ( AuditLogResponse) {}
+  rpc GetAuditLog (AuditLogFilter) returns (AuditLog) {}
+}
 
 message AuditLog {
     string account_id = 1;
@@ -40,4 +48,8 @@ message AuditLogResponse {
   int64 page_count = 2;
   int64 total = 3;
   repeated AuditLog data = 4;
+}
+
+message CreateAuditLogResponse {
+  string id = 1;
 }
