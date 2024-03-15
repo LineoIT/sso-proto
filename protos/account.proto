@@ -3,8 +3,23 @@ syntax = "proto3";
 package proto;
 
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
 
-option go_package = "github.com/LineoIT/sso-proto";
+option go_package = "v1/";
+// option go_package = "github.com/LineoIT/sso-proto";
+
+
+service AccountService {
+  rpc CreateAccount (CreateAccountRequest) returns (CreateAccountResponse) {}
+  rpc UpdateFullname (UpdateFullnameRequest) returns (google.protobuf.Empty) {}
+  rpc EnableAccount (EnableAccountRequest) returns (google.protobuf.Empty) {}
+  rpc ListAccounts (AccountFilter) returns ( AccountResponse) {}
+  rpc GetAccount (AccountFilter) returns (Account) {}
+  rpc Signin (LoginRequest) returns (AccessToken) {}
+  rpc ForgotPassword (ForgotPasswordRequest) returns (google.protobuf.Empty) {}
+  rpc EnableResetPassword (EnableResetPasswordRequest) returns (AccessToken) {}
+  rpc ResetPassword (ResetPasswordRequest) returns (google.protobuf.Empty) {}
+}
 
 
 message Account {
@@ -31,6 +46,11 @@ message CreateAccountRequest {
   string password = 4;
   string role = 5;
   bool is_active = 6;
+}
+
+
+message CreateAccountResponse {
+  string id = 1;
 }
 
 message AccountFilter {
