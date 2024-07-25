@@ -19,6 +19,7 @@ service AccountService {
   rpc ForgotPassword (ForgotPasswordRequest) returns (google.protobuf.Empty) {}
   rpc EnableResetPassword (EnableResetPasswordRequest) returns (AccessToken) {}
   rpc ResetPassword (ResetPasswordRequest) returns (google.protobuf.Empty) {}
+  rpc CheckAccount (AccountFilter) returns (CheckAccountResponse) {}
 }
 
 
@@ -109,4 +110,8 @@ message EnableResetPasswordRequest {
 
 message ResetPasswordRequest {
   string password = 1;
+}
+
+message CheckAccountResponse {
+  string id = 1;
 }
