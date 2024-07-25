@@ -32,6 +32,7 @@ type AccountServiceClient interface {
 	ForgotPassword(ctx context.Context, in *ForgotPasswordRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	EnableResetPassword(ctx context.Context, in *EnableResetPasswordRequest, opts ...grpc.CallOption) (*AccessToken, error)
 	ResetPassword(ctx context.Context, in *ResetPasswordRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	CheckAccount(ctx context.Context, in *AccountFilter, opts ...grpc.CallOption) (*CheckAccountResponse, error)
 }
 
 type accountServiceClient struct {
@@ -123,6 +124,15 @@ func (c *accountServiceClient) ResetPassword(ctx context.Context, in *ResetPassw
 	return out, nil
 }
 
+func (c *accountServiceClient) CheckAccount(ctx context.Context, in *AccountFilter, opts ...grpc.CallOption) (*CheckAccountResponse, error) {
+	out := new(CheckAccountResponse)
+	err := c.cc.Invoke(ctx, "/proto.AccountService/CheckAccount", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AccountServiceServer is the server API for AccountService service.
 // All implementations must embed UnimplementedAccountServiceServer
 // for forward compatibility
@@ -136,6 +146,7 @@ type AccountServiceServer interface {
 	ForgotPassword(context.Context, *ForgotPasswordRequest) (*emptypb.Empty, error)
 	EnableResetPassword(context.Context, *EnableResetPasswordRequest) (*AccessToken, error)
 	ResetPassword(context.Context, *ResetPasswordRequest) (*emptypb.Empty, error)
+	CheckAccount(context.Context, *AccountFilter) (*CheckAccountResponse, error)
 	mustEmbedUnimplementedAccountServiceServer()
 }
 
@@ -169,6 +180,9 @@ func (UnimplementedAccountServiceServer) EnableResetPassword(context.Context, *E
 }
 func (UnimplementedAccountServiceServer) ResetPassword(context.Context, *ResetPasswordRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ResetPassword not implemented")
+}
+func (UnimplementedAccountServiceServer) CheckAccount(context.Context, *AccountFilter) (*CheckAccountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckAccount not implemented")
 }
 func (UnimplementedAccountServiceServer) mustEmbedUnimplementedAccountServiceServer() {}
 
@@ -345,6 +359,24 @@ func _AccountService_ResetPassword_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AccountService_CheckAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AccountFilter)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountServiceServer).CheckAccount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/proto.AccountService/CheckAccount",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountServiceServer).CheckAccount(ctx, req.(*AccountFilter))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AccountService_ServiceDesc is the grpc.ServiceDesc for AccountService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -387,6 +419,10 @@ var AccountService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ResetPassword",
 			Handler:    _AccountService_ResetPassword_Handler,
+		},
+		{
+			MethodName: "CheckAccount",
+			Handler:    _AccountService_CheckAccount_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
