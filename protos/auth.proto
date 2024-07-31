@@ -1,0 +1,88 @@
+syntax = "proto3";
+
+package proto;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+option go_package = "v1/";
+// option go_package = "github.com/LineoIT/sso-proto";
+
+
+service AuthService {
+  rpc Register (RegisterSchema) returns (google.protobuf.Empty) {}
+
+  rpc GetCurrentUser (google.protobuf.Empty) returns (User) {}
+  rpc UpdateUser (UpdateUserSchema) returns (google.protobuf.Empty) {}
+
+  rpc ForgotPassword (EmailSchema) returns (google.protobuf.Empty) {}
+  rpc ConfirmResetPassword (EmailCodeSchema) returns (AccessToken) {}
+  rpc ResetPassword (PasswordSchema) returns (google.protobuf.Empty) {}
+
+  rpc CheckEmail (EmailSchema) returns (google.protobuf.Empty) {}
+  rpc ConfirmEmail (EmailCodeSchema) returns (google.protobuf.Empty) {}
+  rpc EmailLogin (EmailPasswordSchema) returns (AccessToken) {}
+
+  rpc PhoneLogin (PhoneCodeSchema) returns (AccessToken) {}
+  rpc CheckPhoneNumber (PhoneSchema) returns (google.protobuf.Empty) {}
+  rpc ConfirmPhoneNumber (PhoneCodeSchema) returns (google.protobuf.Empty) {}
+}
+
+message User {
+  string id = 1;
+  string lastname = 2;
+  string firstname = 3;
+  string email = 4;
+  string phone = 5;
+  string scope = 6;
+
+  google.protobuf.Timestamp created_at = 7;
+  google.protobuf.Timestamp last_login = 8;
+  google.protobuf.Timestamp last_login_from = 9;
+}
+
+message  AccessToken {
+  string access_token = 1;
+  string refresh_token = 2;
+  int64  exp = 3;
+}
+
+message RegisterSchema {
+  string lastname = 1;
+  string firstname = 2;
+  string email = 3;
+  string phone_number = 4;
+  string password = 5;
+}
+
+message UpdateUserSchema {
+  string lastname = 1;
+  string firstname = 2;
+  string gender = 3;
+  string birthday = 4;
+}
+
+message EmailSchema{
+  string email  = 1;
+}
+message EmailCodeSchema {
+  string email  = 1;
+  string code  = 2;
+}
+message EmailPasswordSchema {
+  string email = 1;
+  string password = 2;
+}
+
+message PhoneCodeSchema {
+  string phone = 1;
+  string code = 2;
+}
+message PhoneSchema {
+  string phone  = 1;
+}
+
+message PasswordSchema {
+  string password = 1;
+}
+
