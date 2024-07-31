@@ -4,7 +4,7 @@
 // - protoc             v4.25.1
 // source: auth.proto
 
-package v1
+package sso
 
 import (
 	context "context"
@@ -47,7 +47,7 @@ func NewAuthServiceClient(cc grpc.ClientConnInterface) AuthServiceClient {
 
 func (c *authServiceClient) Register(ctx context.Context, in *RegisterSchema, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/proto.AuthService/Register", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/sso.AuthService/Register", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -56,7 +56,7 @@ func (c *authServiceClient) Register(ctx context.Context, in *RegisterSchema, op
 
 func (c *authServiceClient) GetCurrentUser(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*User, error) {
 	out := new(User)
-	err := c.cc.Invoke(ctx, "/proto.AuthService/GetCurrentUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/sso.AuthService/GetCurrentUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -65,7 +65,7 @@ func (c *authServiceClient) GetCurrentUser(ctx context.Context, in *emptypb.Empt
 
 func (c *authServiceClient) UpdateUser(ctx context.Context, in *UpdateUserSchema, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/proto.AuthService/UpdateUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/sso.AuthService/UpdateUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -74,7 +74,7 @@ func (c *authServiceClient) UpdateUser(ctx context.Context, in *UpdateUserSchema
 
 func (c *authServiceClient) ForgotPassword(ctx context.Context, in *EmailSchema, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/proto.AuthService/ForgotPassword", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/sso.AuthService/ForgotPassword", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -83,7 +83,7 @@ func (c *authServiceClient) ForgotPassword(ctx context.Context, in *EmailSchema,
 
 func (c *authServiceClient) ConfirmResetPassword(ctx context.Context, in *EmailCodeSchema, opts ...grpc.CallOption) (*AccessToken, error) {
 	out := new(AccessToken)
-	err := c.cc.Invoke(ctx, "/proto.AuthService/ConfirmResetPassword", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/sso.AuthService/ConfirmResetPassword", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -92,7 +92,7 @@ func (c *authServiceClient) ConfirmResetPassword(ctx context.Context, in *EmailC
 
 func (c *authServiceClient) ResetPassword(ctx context.Context, in *PasswordSchema, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/proto.AuthService/ResetPassword", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/sso.AuthService/ResetPassword", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -101,7 +101,7 @@ func (c *authServiceClient) ResetPassword(ctx context.Context, in *PasswordSchem
 
 func (c *authServiceClient) CheckEmail(ctx context.Context, in *EmailSchema, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/proto.AuthService/CheckEmail", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/sso.AuthService/CheckEmail", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -110,7 +110,7 @@ func (c *authServiceClient) CheckEmail(ctx context.Context, in *EmailSchema, opt
 
 func (c *authServiceClient) ConfirmEmail(ctx context.Context, in *EmailCodeSchema, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/proto.AuthService/ConfirmEmail", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/sso.AuthService/ConfirmEmail", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -119,7 +119,7 @@ func (c *authServiceClient) ConfirmEmail(ctx context.Context, in *EmailCodeSchem
 
 func (c *authServiceClient) EmailLogin(ctx context.Context, in *EmailPasswordSchema, opts ...grpc.CallOption) (*AccessToken, error) {
 	out := new(AccessToken)
-	err := c.cc.Invoke(ctx, "/proto.AuthService/EmailLogin", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/sso.AuthService/EmailLogin", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -128,7 +128,7 @@ func (c *authServiceClient) EmailLogin(ctx context.Context, in *EmailPasswordSch
 
 func (c *authServiceClient) PhoneLogin(ctx context.Context, in *PhoneCodeSchema, opts ...grpc.CallOption) (*AccessToken, error) {
 	out := new(AccessToken)
-	err := c.cc.Invoke(ctx, "/proto.AuthService/PhoneLogin", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/sso.AuthService/PhoneLogin", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -137,7 +137,7 @@ func (c *authServiceClient) PhoneLogin(ctx context.Context, in *PhoneCodeSchema,
 
 func (c *authServiceClient) CheckPhoneNumber(ctx context.Context, in *PhoneSchema, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/proto.AuthService/CheckPhoneNumber", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/sso.AuthService/CheckPhoneNumber", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -146,7 +146,7 @@ func (c *authServiceClient) CheckPhoneNumber(ctx context.Context, in *PhoneSchem
 
 func (c *authServiceClient) ConfirmPhoneNumber(ctx context.Context, in *PhoneCodeSchema, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/proto.AuthService/ConfirmPhoneNumber", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/sso.AuthService/ConfirmPhoneNumber", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -235,7 +235,7 @@ func _AuthService_Register_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/proto.AuthService/Register",
+		FullMethod: "/sso.AuthService/Register",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthServiceServer).Register(ctx, req.(*RegisterSchema))
@@ -253,7 +253,7 @@ func _AuthService_GetCurrentUser_Handler(srv interface{}, ctx context.Context, d
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/proto.AuthService/GetCurrentUser",
+		FullMethod: "/sso.AuthService/GetCurrentUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthServiceServer).GetCurrentUser(ctx, req.(*emptypb.Empty))
@@ -271,7 +271,7 @@ func _AuthService_UpdateUser_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/proto.AuthService/UpdateUser",
+		FullMethod: "/sso.AuthService/UpdateUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthServiceServer).UpdateUser(ctx, req.(*UpdateUserSchema))
@@ -289,7 +289,7 @@ func _AuthService_ForgotPassword_Handler(srv interface{}, ctx context.Context, d
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/proto.AuthService/ForgotPassword",
+		FullMethod: "/sso.AuthService/ForgotPassword",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthServiceServer).ForgotPassword(ctx, req.(*EmailSchema))
@@ -307,7 +307,7 @@ func _AuthService_ConfirmResetPassword_Handler(srv interface{}, ctx context.Cont
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/proto.AuthService/ConfirmResetPassword",
+		FullMethod: "/sso.AuthService/ConfirmResetPassword",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthServiceServer).ConfirmResetPassword(ctx, req.(*EmailCodeSchema))
@@ -325,7 +325,7 @@ func _AuthService_ResetPassword_Handler(srv interface{}, ctx context.Context, de
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/proto.AuthService/ResetPassword",
+		FullMethod: "/sso.AuthService/ResetPassword",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthServiceServer).ResetPassword(ctx, req.(*PasswordSchema))
@@ -343,7 +343,7 @@ func _AuthService_CheckEmail_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/proto.AuthService/CheckEmail",
+		FullMethod: "/sso.AuthService/CheckEmail",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthServiceServer).CheckEmail(ctx, req.(*EmailSchema))
@@ -361,7 +361,7 @@ func _AuthService_ConfirmEmail_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/proto.AuthService/ConfirmEmail",
+		FullMethod: "/sso.AuthService/ConfirmEmail",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthServiceServer).ConfirmEmail(ctx, req.(*EmailCodeSchema))
@@ -379,7 +379,7 @@ func _AuthService_EmailLogin_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/proto.AuthService/EmailLogin",
+		FullMethod: "/sso.AuthService/EmailLogin",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthServiceServer).EmailLogin(ctx, req.(*EmailPasswordSchema))
@@ -397,7 +397,7 @@ func _AuthService_PhoneLogin_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/proto.AuthService/PhoneLogin",
+		FullMethod: "/sso.AuthService/PhoneLogin",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthServiceServer).PhoneLogin(ctx, req.(*PhoneCodeSchema))
@@ -415,7 +415,7 @@ func _AuthService_CheckPhoneNumber_Handler(srv interface{}, ctx context.Context,
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/proto.AuthService/CheckPhoneNumber",
+		FullMethod: "/sso.AuthService/CheckPhoneNumber",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthServiceServer).CheckPhoneNumber(ctx, req.(*PhoneSchema))
@@ -433,7 +433,7 @@ func _AuthService_ConfirmPhoneNumber_Handler(srv interface{}, ctx context.Contex
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/proto.AuthService/ConfirmPhoneNumber",
+		FullMethod: "/sso.AuthService/ConfirmPhoneNumber",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthServiceServer).ConfirmPhoneNumber(ctx, req.(*PhoneCodeSchema))
@@ -445,7 +445,7 @@ func _AuthService_ConfirmPhoneNumber_Handler(srv interface{}, ctx context.Contex
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var AuthService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "proto.AuthService",
+	ServiceName: "sso.AuthService",
 	HandlerType: (*AuthServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

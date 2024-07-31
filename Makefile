@@ -1,4 +1,4 @@
-PROTO_OUTPUT_PATH=gen/go/v1
+PROTO_OUTPUT_PATH=sso/go
 PROTO_PATH=protos
 
 install:

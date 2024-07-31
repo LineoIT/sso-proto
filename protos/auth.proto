@@ -1,11 +1,11 @@
 syntax = "proto3";
 
-package proto;
+package sso;
 
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
 
-option go_package = "v1/";
+option go_package = "sso/";
 //option go_package = "github.com/LineoIT/sso-proto";
 
 
