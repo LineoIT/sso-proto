@@ -22,10 +22,12 @@ service AuthService {
   rpc CheckEmail (EmailSchema) returns (google.protobuf.Empty) {}
   rpc ConfirmEmail (EmailCodeSchema) returns (google.protobuf.Empty) {}
   rpc EmailLogin (EmailPasswordSchema) returns (AccessToken) {}
+  rpc ResendEmailConfirmation (EmailSchema) returns (google.protobuf.Empty) {}
 
   rpc PhoneLogin (PhoneCodeSchema) returns (AccessToken) {}
   rpc CheckPhoneNumber (PhoneSchema) returns (google.protobuf.Empty) {}
   rpc ConfirmPhoneNumber (PhoneCodeSchema) returns (google.protobuf.Empty) {}
+  rpc ResendSMSConfirmation (PhoneSchema) returns (google.protobuf.Empty) {}
 }
 
 message User {

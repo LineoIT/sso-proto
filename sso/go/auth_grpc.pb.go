@@ -32,9 +32,11 @@ type AuthServiceClient interface {
 	CheckEmail(ctx context.Context, in *EmailSchema, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	ConfirmEmail(ctx context.Context, in *EmailCodeSchema, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	EmailLogin(ctx context.Context, in *EmailPasswordSchema, opts ...grpc.CallOption) (*AccessToken, error)
+	ResendEmailConfirmation(ctx context.Context, in *EmailSchema, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	PhoneLogin(ctx context.Context, in *PhoneCodeSchema, opts ...grpc.CallOption) (*AccessToken, error)
 	CheckPhoneNumber(ctx context.Context, in *PhoneSchema, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	ConfirmPhoneNumber(ctx context.Context, in *PhoneCodeSchema, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	ResendSMSConfirmation(ctx context.Context, in *PhoneSchema, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type authServiceClient struct {
@@ -126,6 +128,15 @@ func (c *authServiceClient) EmailLogin(ctx context.Context, in *EmailPasswordSch
 	return out, nil
 }
 
+func (c *authServiceClient) ResendEmailConfirmation(ctx context.Context, in *EmailSchema, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, "/sso.AuthService/ResendEmailConfirmation", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *authServiceClient) PhoneLogin(ctx context.Context, in *PhoneCodeSchema, opts ...grpc.CallOption) (*AccessToken, error) {
 	out := new(AccessToken)
 	err := c.cc.Invoke(ctx, "/sso.AuthService/PhoneLogin", in, out, opts...)
@@ -153,6 +164,15 @@ func (c *authServiceClient) ConfirmPhoneNumber(ctx context.Context, in *PhoneCod
 	return out, nil
 }
 
+func (c *authServiceClient) ResendSMSConfirmation(ctx context.Context, in *PhoneSchema, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, "/sso.AuthService/ResendSMSConfirmation", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AuthServiceServer is the server API for AuthService service.
 // All implementations must embed UnimplementedAuthServiceServer
 // for forward compatibility
@@ -166,9 +186,11 @@ type AuthServiceServer interface {
 	CheckEmail(context.Context, *EmailSchema) (*emptypb.Empty, error)
 	ConfirmEmail(context.Context, *EmailCodeSchema) (*emptypb.Empty, error)
 	EmailLogin(context.Context, *EmailPasswordSchema) (*AccessToken, error)
+	ResendEmailConfirmation(context.Context, *EmailSchema) (*emptypb.Empty, error)
 	PhoneLogin(context.Context, *PhoneCodeSchema) (*AccessToken, error)
 	CheckPhoneNumber(context.Context, *PhoneSchema) (*emptypb.Empty, error)
 	ConfirmPhoneNumber(context.Context, *PhoneCodeSchema) (*emptypb.Empty, error)
+	ResendSMSConfirmation(context.Context, *PhoneSchema) (*emptypb.Empty, error)
 	mustEmbedUnimplementedAuthServiceServer()
 }
 
@@ -203,6 +225,9 @@ func (UnimplementedAuthServiceServer) ConfirmEmail(context.Context, *EmailCodeSc
 func (UnimplementedAuthServiceServer) EmailLogin(context.Context, *EmailPasswordSchema) (*AccessToken, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method EmailLogin not implemented")
 }
+func (UnimplementedAuthServiceServer) ResendEmailConfirmation(context.Context, *EmailSchema) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ResendEmailConfirmation not implemented")
+}
 func (UnimplementedAuthServiceServer) PhoneLogin(context.Context, *PhoneCodeSchema) (*AccessToken, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PhoneLogin not implemented")
 }
@@ -211,6 +236,9 @@ func (UnimplementedAuthServiceServer) CheckPhoneNumber(context.Context, *PhoneSc
 }
 func (UnimplementedAuthServiceServer) ConfirmPhoneNumber(context.Context, *PhoneCodeSchema) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ConfirmPhoneNumber not implemented")
+}
+func (UnimplementedAuthServiceServer) ResendSMSConfirmation(context.Context, *PhoneSchema) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ResendSMSConfirmation not implemented")
 }
 func (UnimplementedAuthServiceServer) mustEmbedUnimplementedAuthServiceServer() {}
 
@@ -387,6 +415,24 @@ func _AuthService_EmailLogin_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AuthService_ResendEmailConfirmation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailSchema)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).ResendEmailConfirmation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/sso.AuthService/ResendEmailConfirmation",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).ResendEmailConfirmation(ctx, req.(*EmailSchema))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AuthService_PhoneLogin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(PhoneCodeSchema)
 	if err := dec(in); err != nil {
@@ -441,6 +487,24 @@ func _AuthService_ConfirmPhoneNumber_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AuthService_ResendSMSConfirmation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PhoneSchema)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).ResendSMSConfirmation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/sso.AuthService/ResendSMSConfirmation",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).ResendSMSConfirmation(ctx, req.(*PhoneSchema))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AuthService_ServiceDesc is the grpc.ServiceDesc for AuthService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -485,6 +549,10 @@ var AuthService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AuthService_EmailLogin_Handler,
 		},
 		{
+			MethodName: "ResendEmailConfirmation",
+			Handler:    _AuthService_ResendEmailConfirmation_Handler,
+		},
+		{
 			MethodName: "PhoneLogin",
 			Handler:    _AuthService_PhoneLogin_Handler,
 		},
@@ -495,6 +563,10 @@ var AuthService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ConfirmPhoneNumber",
 			Handler:    _AuthService_ConfirmPhoneNumber_Handler,
+		},
+		{
+			MethodName: "ResendSMSConfirmation",
+			Handler:    _AuthService_ResendSMSConfirmation_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
