@@ -103,6 +103,6 @@ message PasswordSchema {
 }
 
 message TimeoutSchema {
-  string timeout = 1;
+  float timeout = 1;
 }
 
