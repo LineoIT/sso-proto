@@ -10,24 +10,28 @@ option go_package = "sso/";
 
 
 service AuthService {
-  rpc Register (RegisterSchema) returns (google.protobuf.Empty) {}
+  rpc Register (RegisterSchema) returns (TimeoutSchema) {}
 
   rpc GetCurrentUser (google.protobuf.Empty) returns (User) {}
   rpc UpdateUser (UpdateUserSchema) returns (google.protobuf.Empty) {}
 
-  rpc ForgotPassword (EmailSchema) returns (google.protobuf.Empty) {}
+  rpc ForgotPassword (EmailSchema) returns (TimeoutSchema) {}
   rpc ConfirmResetPassword (EmailCodeSchema) returns (AccessToken) {}
   rpc ResetPassword (PasswordSchema) returns (google.protobuf.Empty) {}
 
   rpc CheckEmail (EmailSchema) returns (google.protobuf.Empty) {}
   rpc ConfirmEmail (EmailCodeSchema) returns (google.protobuf.Empty) {}
   rpc EmailLogin (EmailPasswordSchema) returns (AccessToken) {}
-  rpc SendEmailConfirmation (EmailMailSchema) returns (google.protobuf.Empty) {}
+  rpc SendEmailConfirmation (EmailMailSchema) returns (TimeoutSchema) {}
 
   rpc PhoneLogin (PhoneCodeSchema) returns (AccessToken) {}
   rpc CheckPhoneNumber (PhoneSchema) returns (google.protobuf.Empty) {}
   rpc ConfirmPhoneNumber (PhoneCodeSchema) returns (google.protobuf.Empty) {}
-  rpc SendSMSConfirmation (PhoneSMSSchema) returns (google.protobuf.Empty) {}
+  rpc SendSMSConfirmation (PhoneSMSSchema) returns (TimeoutSchema) {}
+
+  rpc LogOut (google.protobuf.Empty) returns (google.protobuf.Empty) {}
+  rpc DeactivateAccount (google.protobuf.Empty) returns (google.protobuf.Empty) {}
+  rpc DeleteAccount (google.protobuf.Empty) returns (google.protobuf.Empty) {}
 }
 
 message User {
@@ -96,5 +100,9 @@ message PhoneSMSSchema {
 
 message PasswordSchema {
   string password = 1;
+}
+
+message TimeoutSchema {
+  string timeout = 1;
 }
 
