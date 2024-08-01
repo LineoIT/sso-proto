@@ -7,5 +7,5 @@ tasks:
       - "gen"
     desc: "Generate proto files"
     cmds:
-      - rm -rf ${gen}/go/*.go protoc --proto_path=${protos}	--go_out=${gen}/go 	--go_opt=paths=source_relative --go-grpc_out=${gen}/go	--go-grpc_opt=paths=source_relative 	${protos}/*.proto
+      - rm -rf ${gen}/go/*.go protoc --proto_path=${proto}	--go_out=${gen}/go 	--go_opt=paths=source_relative --go-grpc_out=${gen}/go	--go-grpc_opt=paths=source_relative 	${proto}/*.proto
     silent: true
