@@ -1,5 +1,6 @@
 PROTO_PATH=proto
 GO_OUT_PATH=gen/go
+JAVA_OUT_PATH=gen/java
 SWAGGER_DOC_DIR=docs
 
 install:
@@ -22,4 +23,11 @@ generate:
     --openapiv2_opt=allow_merge=true,merge_file_name=apidocs \
 	${PROTO_PATH}/*.proto
 
-.PHONY: install clean generate
+generate-java:
+	rm -rf ${JAVA_OUT_PATH}/*ci
+	protoc --proto_path=${PROTO_PATH} \
+	--java_out=${JAVA_OUT_PATH} \
+	--java-grpc_out=${JAVA_OUT_PATH} \
+	${PROTO_PATH}/*.proto
+
+.PHONY: install clean generate generate-java

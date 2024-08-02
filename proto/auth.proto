@@ -3,6 +3,8 @@ syntax = "proto3";
 package sso;
 
 option go_package = "github.com/LineoIT/sso-proto-go";
+option java_package = "ci.lineo.sso";
+option java_outer_classname = "AuthProto";
 
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
