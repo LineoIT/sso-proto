@@ -1,0 +1,6 @@
+[submodule "sso-proto-go"]
+	path = sso-proto-go
+	url = git@github.com:LineoIT/sso-proto-go.git
+[submodule "gen/go"]
+	path = gen/go
+	url = git@github.com:LineoIT/sso-proto-go.git
