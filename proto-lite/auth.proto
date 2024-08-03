@@ -1,0 +1,145 @@
+syntax = "proto3";
+
+package sso;
+
+option go_package = "github.com/LineoIT/sso-proto-lite-go";
+option java_package = "ci.lineo.sso";
+option java_outer_classname = "AuthProto";
+option java_multiple_files = true;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+
+
+service AuthService {
+  rpc Register (RegisterSchema) returns (TimeoutSchema) {
+
+  }
+
+  rpc GetCurrentUser (google.protobuf.Empty) returns (User) {
+
+  }
+  rpc UpdateUser (UpdateUserSchema) returns (google.protobuf.Empty) {
+
+  }
+
+  rpc ForgotPassword (EmailSchema) returns (TimeoutSchema) {
+
+  }
+  rpc ConfirmResetPassword (EmailCodeSchema) returns (AccessToken) {
+
+  }
+  rpc ResetPassword (PasswordSchema) returns (google.protobuf.Empty) {
+
+  }
+
+  rpc CheckEmail (EmailSchema) returns (google.protobuf.Empty) {
+
+  }
+  rpc ConfirmEmail (EmailCodeSchema) returns (google.protobuf.Empty) {
+
+  }
+  rpc EmailLogin (EmailPasswordSchema) returns (AccessToken) {
+
+  }
+  rpc SendEmailConfirmation (EmailMailSchema) returns (TimeoutSchema) {
+
+  }
+
+  rpc PhoneLogin (PhoneCodeSchema) returns (AccessToken) {
+
+  }
+  rpc CheckPhoneNumber (PhoneSchema) returns (google.protobuf.Empty) {
+
+  }
+  rpc ConfirmPhoneNumber (PhoneCodeSchema) returns (google.protobuf.Empty) {
+
+  }
+  rpc SendSMSConfirmation (PhoneSMSSchema) returns (TimeoutSchema) {
+
+  }
+
+  rpc LogOut (google.protobuf.Empty) returns (google.protobuf.Empty) {
+
+  }
+  rpc DeactivateAccount (google.protobuf.Empty) returns (google.protobuf.Empty) {
+
+  }
+  rpc DeleteAccount (google.protobuf.Empty) returns (google.protobuf.Empty) {
+
+  }
+}
+
+message User {
+  string id = 1;
+  string lastname = 2;
+  string firstname = 3;
+  string email = 4;
+  string phone = 5;
+  string scope = 6;
+  bool is_active = 7;
+  google.protobuf.Timestamp created_at = 8;
+  google.protobuf.Timestamp last_login = 9;
+  google.protobuf.Timestamp last_login_from = 10;
+}
+
+message  AccessToken {
+  string access_token = 1;
+  string refresh_token = 2;
+  int64  exp = 3;
+}
+
+message RegisterSchema {
+  string lastname = 1;
+  string firstname = 2;
+  string email = 3;
+  string phone_number = 4;
+  string password = 5;
+}
+
+message UpdateUserSchema {
+  string lastname = 1;
+  string firstname = 2;
+  string gender = 3;
+  string birthday = 4;
+}
+
+message EmailSchema{
+  string email  = 1;
+}
+message EmailCodeSchema {
+  string email  = 1;
+  string code  = 2;
+}
+message EmailPasswordSchema {
+  string email = 1;
+  string password = 2;
+}
+
+message EmailMailSchema {
+  string email  = 1;
+  uint32 action  = 2;
+}
+
+message PhoneCodeSchema {
+  string phone = 1;
+  string code = 2;
+}
+message PhoneSchema {
+  string phone  = 1;
+}
+
+message PhoneSMSSchema {
+  string phone  = 1;
+  uint32 action  = 2;
+}
+
+message PasswordSchema {
+  string password = 1;
+}
+
+message TimeoutSchema {
+  int64 timeout = 1;
+}
+

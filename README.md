@@ -8,6 +8,10 @@ Install the protocol compiler plugins for Go using the following commands:
 go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway@latest
 go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+
+
+$ go install github.com/wasilibs/go-protoc-gen-grpc-java/cmd/protoc-gen-grpc-java@latest
+$ go install github.com/wasilibs/go-protoc-gen-builtins/cmd/protoc-gen-kotlin@v1.27.1
 ```
 
 Install GRPC Gateway(optional)
