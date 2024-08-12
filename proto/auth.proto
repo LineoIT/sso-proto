@@ -195,7 +195,8 @@ service AuthService {
 
   rpc LogOut (LogoutSchema) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      get: "/v1/logout"
+      post: "/v1/logout",
+      body: "*"
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       description: "Use this API to sign out";

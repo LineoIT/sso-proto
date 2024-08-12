@@ -185,7 +185,7 @@
       }
     },
     "/v1/logout": {
-      "get": {
+      "post": {
         "summary": "Log out",
         "description": "Use this API to sign out",
         "operationId": "AuthService_LogOut",
@@ -206,10 +206,12 @@
         },
         "parameters": [
           {
-            "name": "blackout",
-            "in": "query",
-            "required": false,
-            "type": "boolean"
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ssoLogoutSchema"
+            }
           }
         ],
         "tags": [
@@ -726,6 +728,14 @@
       "properties": {
         "email": {
           "type": "string"
+        }
+      }
+    },
+    "ssoLogoutSchema": {
+      "type": "object",
+      "properties": {
+        "blackout": {
+          "type": "boolean"
         }
       }
     },
