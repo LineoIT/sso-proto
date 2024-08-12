@@ -72,7 +72,7 @@ service AuthService {
   }
   rpc ConfirmResetPassword (EmailCodeSchema) returns (AccessToken) {
     option (google.api.http) = {
-      post: "/v1/password/confirm-reset"
+      post: "/v1/password/reset/confirm"
       body: "*"
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
@@ -88,6 +88,26 @@ service AuthService {
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       description: "Use this API to change password if permitted";
       summary: "Reset password";
+    };
+  }
+  rpc CheckPassword (PasswordSchema) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/v1/password/check"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Use this endpoint to check current user password";
+      summary: "Check current user password";
+    };
+  }
+  rpc ChangePassword (PasswordSchema) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/v1/password/change"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Use this API to change current user password if permitted";
+      summary: "Change current user password";
     };
   }
 

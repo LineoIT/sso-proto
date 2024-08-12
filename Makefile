@@ -36,6 +36,8 @@ generate-kotlin:
 	rm -rf ${KOTLIN_OUT_PATH}/*ci
 	protoc --proto_path=${PROTO_PATH} \
 	--kotlin_out=${KOTLIN_OUT_PATH} \
+	--grpc-kotlin_out=${KOTLIN_OUT_PATH} \
+;	--plugin=protoc-gen-kotlin=tmp/protoc-gen-kotlin.bat \
 	${PROTO_PATH}/*.proto
 
 .PHONY: install clean generate generate-java generate-kotlin
