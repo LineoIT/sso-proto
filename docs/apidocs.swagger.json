@@ -204,6 +204,14 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "blackout",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
         "tags": [
           "AuthService"
         ]

@@ -193,7 +193,7 @@ service AuthService {
     };
   }
 
-  rpc LogOut (google.protobuf.Empty) returns (google.protobuf.Empty) {
+  rpc LogOut (LogoutSchema) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       get: "/v1/logout"
     };
@@ -292,5 +292,9 @@ message PasswordSchema {
 
 message TimeoutSchema {
   int64 timeout = 1;
+}
+
+message LogoutSchema {
+  bool blackout = 1;
 }
 
