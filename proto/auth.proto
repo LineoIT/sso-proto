@@ -234,6 +234,8 @@ message User {
   google.protobuf.Timestamp created_at = 8;
   google.protobuf.Timestamp last_login = 9;
   google.protobuf.Timestamp last_login_from = 10;
+  string birthday = 11;
+  string gender = 12;
 }
 
 message  AccessToken {

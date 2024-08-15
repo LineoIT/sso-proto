@@ -859,6 +859,12 @@
         "lastLoginFrom": {
           "type": "string",
           "format": "date-time"
+        },
+        "birthday": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string"
         }
       }
     }
