@@ -821,6 +821,10 @@
         },
         "birthday": {
           "type": "string"
+        },
+        "picture": {
+          "type": "string",
+          "format": "byte"
         }
       }
     },
@@ -864,6 +868,9 @@
           "type": "string"
         },
         "gender": {
+          "type": "string"
+        },
+        "picture": {
           "type": "string"
         }
       }

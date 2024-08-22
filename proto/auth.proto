@@ -236,6 +236,7 @@ message User {
   google.protobuf.Timestamp last_login_from = 10;
   string birthday = 11;
   string gender = 12;
+  string picture = 13;
 }
 
 message  AccessToken {
@@ -257,6 +258,7 @@ message UpdateUserSchema {
   string firstname = 2;
   string gender = 3;
   string birthday = 4;
+  bytes picture = 5;
 }
 
 message EmailSchema{
