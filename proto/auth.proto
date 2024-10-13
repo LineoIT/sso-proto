@@ -222,8 +222,8 @@ service AuthService {
     };
   }
 
-  rpc GetUserById (google.protobuf.Empty) returns (User) {}
-  rpc GetUserByEmail (google.protobuf.Empty) returns (User) {}
+  rpc GetUserById (IdSchema) returns (User) {}
+  rpc GetUserByEmail (IdSchema) returns (User) {}
 
 }
 
