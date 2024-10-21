@@ -224,6 +224,15 @@ service AuthService {
 
   rpc GetUserById (IdSchema) returns (User) {}
   rpc GetUserByEmail (IdSchema) returns (User) {}
+  rpc HealthCheck (google.protobuf.Empty) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      get: "/v1/healthcheck"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Use this API to check server is ready not not";
+      summary: "Health Check";
+    };
+  }
 
 }
 

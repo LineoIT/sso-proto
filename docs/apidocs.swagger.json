@@ -184,6 +184,31 @@
         ]
       }
     },
+    "/v1/healthcheck": {
+      "get": {
+        "summary": "Health Check",
+        "description": "Use this API to check server is ready not not",
+        "operationId": "AuthService_HealthCheck",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "AuthService"
+        ]
+      }
+    },
     "/v1/logout": {
       "post": {
         "summary": "Log out",
