@@ -224,7 +224,7 @@ service AuthService {
 
   rpc GetUserById (IdSchema) returns (User) {}
   rpc GetUserByEmail (IdSchema) returns (User) {}
-  rpc HealthCheck (google.protobuf.Empty) returns (google.protobuf.Empty) {
+  rpc HealthCheck (google.protobuf.Empty) returns (MessageSchema) {
     option (google.api.http) = {
       get: "/v1/healthcheck"
     };
@@ -320,3 +320,6 @@ message IdSchema {
   string id = 1;
 }
 
+message MessageSchema {
+  string message = 1;
+}

@@ -193,8 +193,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "type": "object",
-              "properties": {}
+              "$ref": "#/definitions/ssoMessageSchema"
             }
           },
           "default": {
@@ -761,6 +760,14 @@
       "properties": {
         "blackout": {
           "type": "boolean"
+        }
+      }
+    },
+    "ssoMessageSchema": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
         }
       }
     },
